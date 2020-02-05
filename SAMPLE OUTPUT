@@ -1,0 +1,453 @@
+#Sample Output
+#Data Before Removing Unwanted columns and Null Values
+0                   S No                 Date     Vehicle NO        Car Model   
+1                      1  2015-04-01 00:00:00  KA 51 MB 6349            Etios   
+2                      2  2015-04-02 00:00:00     AP28BG0022           Indica   
+3                      3  2015-04-02 00:00:00    AP29 R 9922          Wagon-R   
+4                      4  2015-04-02 00:00:00            NaN             Ikon   
+5                      5  2015-04-03 00:00:00   AP 29 C 2447           Santro   
+6                      6  2015-04-03 00:00:00            NaN        Ford Figo   
+7                      7  2015-04-03 00:00:00            NaN              Zen   
+8                      8  2015-04-04 00:00:00            NaN        Chevorlet   
+9                      9  2015-04-04 00:00:00   HR 25 B 4468      Ford Fiesta   
+10                    10  2015-04-04 00:00:00  AP 29 BA 2340           Innova   
+11                    11  2015-04-05 00:00:00  AP 29 AL 2025              i10   
+12                    12  2015-04-05 00:00:00            NaN     Honda Accord   
+13                    13  2015-04-05 00:00:00            NaN            Swift   
+14                    14  2015-04-07 00:00:00      AP29P0511          Wagon-R   
+15                    15  2015-04-09 00:00:00      AP13R7200             I 20   
+16                    16  2015-04-08 00:00:00   AP 29 S 3788        Ford Figo   
+17                    17  2015-04-10 00:00:00  AP 28 CG 3223            Manza   
+18                    18  2015-04-08 00:00:00  AP 29 AC 7870  Ford Iko & Alto   
+19                    19  2015-04-09 00:00:00   AP 29 AL2861          Wagon-R   
+20                    20  2015-04-10 00:00:00  AP 29 AX 6394         Alto 800   
+21                    21             00:00:00     AP29F 1107           Indica   
+22                    22  2015-04-10 00:00:00  AP 29 AT 6285            Punto   
+23                    23  2015-04-08 00:00:00   AP 29 I 9390        Ford Ikon   
+24                    24  2015-04-10 00:00:00  AP 09 AZ 9053       Ford Ikon    
+25                    25  2015-04-08 00:00:00  AP 29 AA 4379            I 10    
+26                    26  2015-04-12 00:00:00  AP 29 AA 4379            I 10    
+27                    27  2015-04-15 00:00:00  AP 10 AK 0038             Getz   
+28                    28  2015-04-15 00:00:00     AP29AJ4998            Verna   
+29                    29  2015-04-15 00:00:00      AP29N2983           Santro   
+..                   ...                  ...            ...              ...   
+34                    34  2015-04-18 00:00:00     AP31AW3767           Indica   
+35                    35  2015-04-18 00:00:00      AP29M7488           Indica   
+36                    36  2015-04-19 00:00:00      AP29J1967           Santro   
+37                    37  2015-04-19 00:00:00     AP29AF5414           Indigo   
+38                    38  2015-04-20 00:00:00            NaN          Ciffrol   
+39                    39  2015-04-22 00:00:00     AP13AA3180            Swift   
+40                   NaN  2015-04-22 00:00:00  AP 28 AC 6669           Indica   
+41                    40  2015-04-21 00:00:00      AP9BB1090          Scorpio   
+42                    41  2015-04-23 00:00:00     AP29AS5230      Ford Fiesta   
+43                    42  2015-04-24 00:00:00     AP28AV6200       Zen estilo   
+44                    43  2015-04-23 00:00:00            NaN          Ciffrol   
+45                    44  2015-04-24 00:00:00   AP 9 BA 3291            Alto    
+46                    45  2015-04-24 00:00:00  AP 29 BN 2799             Beat   
+47                    46  2015-04-24 00:00:00   AP 13 AB0543         Alto k10   
+48                    47  2015-04-25 00:00:00   AP 13 L 9998            Verna   
+49                    48  2015-04-25 00:00:00  AP 29 AQ 1391   Chevrolet U-VA   
+50                    49  2015-04-25 00:00:00   AP 29 J 5662        Ford Ikon   
+51                    50  2015-04-25 00:00:00      AP 9 N 54      Maruthi Zen   
+52                    51  2015-04-27 00:00:00   AP 09 Y 8860         Tata ACE   
+53                    52  2015-04-26 00:00:00  AP 28 AR 9708             Aveo   
+54                    53  2015-04-28 00:00:00  AP 10 AT 5958            I 10    
+55                    54  2015-04-28 00:00:00   AP 10 B 2513       Maruti 800   
+56                    55  2015-04-28 00:00:00   AP 9 BB 1090          Scorpio   
+57                    56  2015-04-29 00:00:00  AP 10 BA 1613     Maruti Alto    
+58                    57  2015-04-29 00:00:00  AP 10 AR 7268            Swift   
+59                    58  2015-04-29 00:00:00  AP 31 AU 5372             Alto   
+60                    59  2015-04-29 00:00:00  AP 10 AZ 1203             Beat   
+61                    60  2015-04-30 00:00:00  AP 28 AE 2310       Maruti Zen   
+62                   NaN                  NaN            NaN              NaN   
+63                   NaN                  NaN            NaN              NaN   
+
+          Unnamed: 4   Unnamed: 5    Unnamed: 6 Unnamed: 7 Unnamed: 8  \
+0      Customer Name  TotalAmount  Discount Amt       Cash     Cheque   
+1                NaN          400           NaN        400        NaN   
+2             Nithin          550           200        NaN        NaN   
+3             Swarna       9976.9           6.9       9970        NaN   
+4       Horn Setting          200           NaN        200        NaN   
+5     Govind Agarwal      3702.25           202       3500        NaN   
+6       Suresh Reddy         1100           NaN       1100        NaN   
+7            Old Due         5500           NaN       5500        NaN   
+8           scanning          450           NaN        450        NaN   
+9          S.K Singh         8850           NaN       8850        NaN   
+10             Suman         1500           NaN       1500        NaN   
+11           Pramodh      13119.5         119.5      13000        NaN   
+12       A/C Filling         1800           NaN       1800        NaN   
+13               BOI         4450           NaN        NaN        NaN   
+14             Shyam         1430           NaN       1430        NaN   
+15          Srinivas        16700           200        NaN        NaN   
+16           Krishna         8048            48        NaN        NaN   
+17             Shaik         2500           NaN       2500        NaN   
+18       Subramanyam      8362.13        362.13        NaN       8000   
+19       Vijay Kumar       5239.8           NaN       5100        NaN   
+20          Srinivas         4591           NaN       4500        NaN   
+21  Venkateshwar rao          850            50        800        NaN   
+22          Anuradha         4720           NaN       4720        NaN   
+23         Dhinamani         3580            80       3500        NaN   
+24      Gagan Marker      35020.7           NaN        NaN        NaN   
+25            Ashwin         6722           NaN        NaN        NaN   
+26            Ashwin       6652.5           NaN        NaN        NaN   
+27       Pavan Kumar       7227.5           NaN        NaN        NaN   
+28            Pankaj      39463.7        1463.7      38000        NaN   
+29            Sharma          400           NaN        400        NaN   
+..               ...          ...           ...        ...        ...   
+34          Jayasree      31625.8           NaN      21000        NaN   
+35       Don Blewitt        11268           NaN        NaN      11268   
+36          Jaganath        12850           NaN      12900        NaN   
+37            Balaji        10535           NaN        NaN      10535   
+38               NaN        12500           NaN        NaN      12500   
+39               BOI         8698           NaN        NaN        NaN   
+40            Murali         3829           NaN        NaN       6300   
+41              Saif         2319            19       2300        NaN   
+42    Narendra Reddy         7350           NaN        NaN        NaN   
+43        Gnaneshwar          300           NaN        300        NaN   
+44               NaN        14502           NaN        NaN      14502   
+45            Murthy         2956             6       2950        NaN   
+46             Kiran         1658            58       1600        NaN   
+47         Ahs kumar         7984           NaN        NaN        NaN   
+48               Ram         8513          1013       7500        NaN   
+49              Raju      4767.75           NaN        NaN        NaN   
+50        Sai Prasad       9739.5           NaN        NaN    9739.25   
+51      Y.V Appa Rao         1940           NaN       1940        NaN   
+52            Srujan       6996.4           NaN        NaN       6900   
+53            Ramesh      12611.2           NaN        NaN        NaN   
+54             Naidu          900           NaN        900        NaN   
+55    Chandra Shekar      1159.35        359.35        800        NaN   
+56              Saif         6000           NaN       6000        NaN   
+57             Malik         2831           131       2700        NaN   
+58               Boi         4155           NaN        NaN        NaN   
+59       Sai Krishna       3580.5           NaN        NaN        NaN   
+60         Jagadeesh         2530           NaN        NaN        NaN   
+61            Sharma       2116.4           NaN       2200        NaN   
+62               NaN          NaN           NaN        NaN        NaN   
+63               NaN       417455       5192.28     184010    79744.2   
+
+   Unnamed: 9  Unnamed: 10   Unnamed: 11 Unnamed: 12  
+0         C/C      Due Amt  Phone number     Paid On  
+1         NaN            0           NaN         NaN  
+2         350            0           NaN         NaN  
+3         NaN            0           NaN         NaN  
+4         NaN            0           NaN         NaN  
+5         NaN         0.25           NaN         NaN  
+6         NaN            0           NaN         NaN  
+7         NaN            0           NaN         NaN  
+8         NaN            0           NaN         NaN  
+9         NaN            0           NaN         NaN  
+10        NaN            0           NaN         NaN  
+11        NaN            0           NaN         NaN  
+12        NaN            0           NaN         NaN  
+13       4450            0           NaN         NaN  
+14        NaN            0           NaN         NaN  
+15      16500            0           NaN         NaN  
+16       8000            0           NaN         NaN  
+17        NaN            0           NaN         NaN  
+18        NaN  9.09495e-13           NaN         NaN  
+19        NaN        139.8           NaN         NaN  
+20        NaN           91           NaN         NaN  
+21        NaN            0           NaN         NaN  
+22        NaN            0           NaN         NaN  
+23        NaN            0           NaN         NaN  
+24      35000        20.65           NaN         NaN  
+25       6722            0           NaN         NaN  
+26       6652          0.5           NaN         NaN  
+27       7227          0.5           NaN         NaN  
+28        NaN            0           NaN         NaN  
+29        NaN            0           NaN         NaN  
+..        ...          ...           ...         ...  
+34      10625         0.75           NaN         NaN  
+35        NaN            0           NaN         NaN  
+36        NaN          -50           NaN         NaN  
+37        NaN            0           NaN         NaN  
+38        NaN            0           NaN         NaN  
+39       8698            0           NaN         NaN  
+40        NaN          NaN           NaN         NaN  
+41        NaN            0           NaN         NaN  
+42       7350            0           NaN         NaN  
+43        NaN            0           NaN         NaN  
+44        NaN            0           NaN         NaN  
+45        NaN            0           NaN         NaN  
+46        NaN            0           NaN         NaN  
+47       7984            0           NaN         NaN  
+48        NaN            0           NaN         NaN  
+49        NaN      4767.75           NaN         NaN  
+50        NaN         0.25           NaN         NaN  
+51        NaN            0           NaN         NaN  
+52        NaN         96.4           NaN         NaN  
+53    12611.2            0           NaN         NaN  
+54        NaN            0           NaN         NaN  
+55        NaN -1.13687e-13           NaN         NaN  
+56        NaN            0           NaN         NaN  
+57        NaN            0           NaN         NaN  
+58       4155            0           NaN         NaN  
+59       3580          0.5           NaN         NaN  
+60       2530            0           NaN         NaN  
+61        NaN        -83.6           NaN         NaN  
+62        NaN          NaN           NaN         NaN  
+63     145994      4984.75           NaN         NaN  
+
+[64 rows x 13 columns]  
+
+#After Removing The Columns
+0                  Date     Vehicle NO        Car Model     Customer Name  \
+1   2015-04-01 00:00:00  KA 51 MB 6349            Etios               NaN   
+2   2015-04-02 00:00:00     AP28BG0022           Indica            Nithin   
+3   2015-04-02 00:00:00    AP29 R 9922          Wagon-R            Swarna   
+4   2015-04-02 00:00:00            NaN             Ikon      Horn Setting   
+5   2015-04-03 00:00:00   AP 29 C 2447           Santro    Govind Agarwal   
+6   2015-04-03 00:00:00            NaN        Ford Figo      Suresh Reddy   
+7   2015-04-03 00:00:00            NaN              Zen           Old Due   
+8   2015-04-04 00:00:00            NaN        Chevorlet          scanning   
+9   2015-04-04 00:00:00   HR 25 B 4468      Ford Fiesta         S.K Singh   
+10  2015-04-04 00:00:00  AP 29 BA 2340           Innova             Suman   
+11  2015-04-05 00:00:00  AP 29 AL 2025              i10           Pramodh   
+12  2015-04-05 00:00:00            NaN     Honda Accord       A/C Filling   
+13  2015-04-05 00:00:00            NaN            Swift               BOI   
+14  2015-04-07 00:00:00      AP29P0511          Wagon-R             Shyam   
+15  2015-04-09 00:00:00      AP13R7200             I 20          Srinivas   
+16  2015-04-08 00:00:00   AP 29 S 3788        Ford Figo           Krishna   
+17  2015-04-10 00:00:00  AP 28 CG 3223            Manza             Shaik   
+18  2015-04-08 00:00:00  AP 29 AC 7870  Ford Iko & Alto       Subramanyam   
+19  2015-04-09 00:00:00   AP 29 AL2861          Wagon-R       Vijay Kumar   
+20  2015-04-10 00:00:00  AP 29 AX 6394         Alto 800          Srinivas   
+21             00:00:00     AP29F 1107           Indica  Venkateshwar rao   
+22  2015-04-10 00:00:00  AP 29 AT 6285            Punto          Anuradha   
+23  2015-04-08 00:00:00   AP 29 I 9390        Ford Ikon         Dhinamani   
+24  2015-04-10 00:00:00  AP 09 AZ 9053       Ford Ikon       Gagan Marker   
+25  2015-04-08 00:00:00  AP 29 AA 4379            I 10             Ashwin   
+26  2015-04-12 00:00:00  AP 29 AA 4379            I 10             Ashwin   
+27  2015-04-15 00:00:00  AP 10 AK 0038             Getz       Pavan Kumar   
+28  2015-04-15 00:00:00     AP29AJ4998            Verna            Pankaj   
+29  2015-04-15 00:00:00      AP29N2983           Santro            Sharma   
+30  2015-04-15 00:00:00  AP 10 AR 7268            Swift               BOI   
+..                  ...            ...              ...               ...   
+34  2015-04-18 00:00:00     AP31AW3767           Indica          Jayasree   
+35  2015-04-18 00:00:00      AP29M7488           Indica       Don Blewitt   
+36  2015-04-19 00:00:00      AP29J1967           Santro          Jaganath   
+37  2015-04-19 00:00:00     AP29AF5414           Indigo            Balaji   
+38  2015-04-20 00:00:00            NaN          Ciffrol               NaN   
+39  2015-04-22 00:00:00     AP13AA3180            Swift               BOI   
+40  2015-04-22 00:00:00  AP 28 AC 6669           Indica            Murali   
+41  2015-04-21 00:00:00      AP9BB1090          Scorpio              Saif   
+42  2015-04-23 00:00:00     AP29AS5230      Ford Fiesta    Narendra Reddy   
+43  2015-04-24 00:00:00     AP28AV6200       Zen estilo        Gnaneshwar   
+44  2015-04-23 00:00:00            NaN          Ciffrol               NaN   
+45  2015-04-24 00:00:00   AP 9 BA 3291            Alto             Murthy   
+46  2015-04-24 00:00:00  AP 29 BN 2799             Beat             Kiran   
+47  2015-04-24 00:00:00   AP 13 AB0543         Alto k10         Ahs kumar   
+48  2015-04-25 00:00:00   AP 13 L 9998            Verna               Ram   
+49  2015-04-25 00:00:00  AP 29 AQ 1391   Chevrolet U-VA              Raju   
+50  2015-04-25 00:00:00   AP 29 J 5662        Ford Ikon        Sai Prasad   
+51  2015-04-25 00:00:00      AP 9 N 54      Maruthi Zen      Y.V Appa Rao   
+52  2015-04-27 00:00:00   AP 09 Y 8860         Tata ACE            Srujan   
+53  2015-04-26 00:00:00  AP 28 AR 9708             Aveo            Ramesh   
+54  2015-04-28 00:00:00  AP 10 AT 5958            I 10              Naidu   
+55  2015-04-28 00:00:00   AP 10 B 2513       Maruti 800    Chandra Shekar   
+56  2015-04-28 00:00:00   AP 9 BB 1090          Scorpio              Saif   
+57  2015-04-29 00:00:00  AP 10 BA 1613     Maruti Alto              Malik   
+58  2015-04-29 00:00:00  AP 10 AR 7268            Swift               Boi   
+59  2015-04-29 00:00:00  AP 31 AU 5372             Alto       Sai Krishna   
+60  2015-04-29 00:00:00  AP 10 AZ 1203             Beat         Jagadeesh   
+61  2015-04-30 00:00:00  AP 28 AE 2310       Maruti Zen            Sharma   
+62                  NaN            NaN              NaN               NaN   
+63                  NaN            NaN              NaN               NaN   
+
+0  TotalAmount  
+1          400  
+2          550  
+3       9976.9  
+4          200  
+5      3702.25  
+6         1100  
+7         5500  
+8          450  
+9         8850  
+10        1500  
+11     13119.5  
+12        1800  
+13        4450  
+14        1430  
+15       16700  
+16        8048  
+17        2500  
+18     8362.13  
+19      5239.8  
+20        4591  
+21         850  
+22        4720  
+23        3580  
+24     35020.7  
+25        6722  
+26      6652.5  
+27      7227.5  
+28     39463.7  
+29         400  
+30         300  
+..         ...  
+34     31625.8  
+35       11268  
+36       12850  
+37       10535  
+38       12500  
+39        8698  
+40        3829  
+41        2319  
+42        7350  
+43         300  
+44       14502  
+45        2956  
+46        1658  
+47        7984  
+48        8513  
+49     4767.75  
+50      9739.5  
+51        1940  
+52      6996.4  
+53     12611.2  
+54         900  
+55     1159.35  
+56        6000  
+57        2831  
+58        4155  
+59      3580.5  
+60        2530  
+61      2116.4  
+62         NaN  
+63      417455  
+
+[63 rows x 5 columns]
+
+#Calculate the percentage of null values
+Date              3.174603
+Vehicle_No       15.873016
+Vehicle_Name      3.174603
+Customer_Name     7.936508
+Bill_Amount       1.587302
+dtype: float64
+#The vehicle No can not be null at any cost so remove all the null values of vehicle no
+        Date               Vehicle_No        Vehicle_Name       Customer_Name  \
+2   2015-04-02 00:00:00     AP28BG0022           Indica            Nithin   
+3   2015-04-02 00:00:00    AP29 R 9922          Wagon-R            Swarna   
+5   2015-04-03 00:00:00   AP 29 C 2447           Santro    Govind Agarwal   
+9   2015-04-04 00:00:00   HR 25 B 4468      Ford Fiesta         S.K Singh   
+10  2015-04-04 00:00:00  AP 29 BA 2340           Innova             Suman   
+11  2015-04-05 00:00:00  AP 29 AL 2025              i10           Pramodh   
+14  2015-04-07 00:00:00      AP29P0511          Wagon-R             Shyam   
+15  2015-04-09 00:00:00      AP13R7200             I 20          Srinivas   
+16  2015-04-08 00:00:00   AP 29 S 3788        Ford Figo           Krishna   
+17  2015-04-10 00:00:00  AP 28 CG 3223            Manza             Shaik   
+18  2015-04-08 00:00:00  AP 29 AC 7870  Ford Iko & Alto       Subramanyam   
+19  2015-04-09 00:00:00   AP 29 AL2861          Wagon-R       Vijay Kumar   
+20  2015-04-10 00:00:00  AP 29 AX 6394         Alto 800          Srinivas   
+21             00:00:00     AP29F 1107           Indica  Venkateshwar rao   
+22  2015-04-10 00:00:00  AP 29 AT 6285            Punto          Anuradha   
+23  2015-04-08 00:00:00   AP 29 I 9390        Ford Ikon         Dhinamani   
+24  2015-04-10 00:00:00  AP 09 AZ 9053       Ford Ikon       Gagan Marker   
+25  2015-04-08 00:00:00  AP 29 AA 4379            I 10             Ashwin   
+26  2015-04-12 00:00:00  AP 29 AA 4379            I 10             Ashwin   
+27  2015-04-15 00:00:00  AP 10 AK 0038             Getz       Pavan Kumar   
+28  2015-04-15 00:00:00     AP29AJ4998            Verna            Pankaj   
+29  2015-04-15 00:00:00      AP29N2983           Santro            Sharma   
+30  2015-04-15 00:00:00  AP 10 AR 7268            Swift               BOI   
+31  2015-04-16 00:00:00      AP29A8482         Fod Figo           C.Phani   
+32  2015-04-16 00:00:00  AP 28 DD 8296            Verna         Suk Mohan   
+33  2015-04-17 00:00:00    AP29AN28289            SWIFT         SK Prasad   
+34  2015-04-18 00:00:00     AP31AW3767           Indica          Jayasree   
+35  2015-04-18 00:00:00      AP29M7488           Indica       Don Blewitt   
+36  2015-04-19 00:00:00      AP29J1967           Santro          Jaganath   
+37  2015-04-19 00:00:00     AP29AF5414           Indigo            Balaji   
+39  2015-04-22 00:00:00     AP13AA3180            Swift               BOI   
+40  2015-04-22 00:00:00  AP 28 AC 6669           Indica            Murali   
+41  2015-04-21 00:00:00      AP9BB1090          Scorpio              Saif   
+42  2015-04-23 00:00:00     AP29AS5230      Ford Fiesta    Narendra Reddy   
+43  2015-04-24 00:00:00     AP28AV6200       Zen estilo        Gnaneshwar   
+45  2015-04-24 00:00:00   AP 9 BA 3291            Alto             Murthy   
+46  2015-04-24 00:00:00  AP 29 BN 2799             Beat             Kiran   
+47  2015-04-24 00:00:00   AP 13 AB0543         Alto k10         Ahs kumar   
+48  2015-04-25 00:00:00   AP 13 L 9998            Verna               Ram   
+49  2015-04-25 00:00:00  AP 29 AQ 1391   Chevrolet U-VA              Raju   
+50  2015-04-25 00:00:00   AP 29 J 5662        Ford Ikon        Sai Prasad   
+51  2015-04-25 00:00:00      AP 9 N 54      Maruthi Zen      Y.V Appa Rao   
+52  2015-04-27 00:00:00   AP 09 Y 8860         Tata ACE            Srujan   
+53  2015-04-26 00:00:00  AP 28 AR 9708             Aveo            Ramesh   
+54  2015-04-28 00:00:00  AP 10 AT 5958            I 10              Naidu   
+55  2015-04-28 00:00:00   AP 10 B 2513       Maruti 800    Chandra Shekar   
+56  2015-04-28 00:00:00   AP 9 BB 1090          Scorpio              Saif   
+57  2015-04-29 00:00:00  AP 10 BA 1613     Maruti Alto              Malik   
+58  2015-04-29 00:00:00  AP 10 AR 7268            Swift               Boi   
+59  2015-04-29 00:00:00  AP 31 AU 5372             Alto       Sai Krishna   
+60  2015-04-29 00:00:00  AP 10 AZ 1203             Beat         Jagadeesh   
+61  2015-04-30 00:00:00  AP 28 AE 2310       Maruti Zen            Sharma   
+
+   Bill_Amount  
+2          550  
+3       9976.9  
+5      3702.25  
+9         8850  
+10        1500  
+11     13119.5  
+14        1430  
+15       16700  
+16        8048  
+17        2500  
+18     8362.13  
+19      5239.8  
+20        4591  
+21         850  
+22        4720  
+23        3580  
+24     35020.7  
+25        6722  
+26      6652.5  
+27      7227.5  
+28     39463.7  
+29         400  
+30         300  
+31        3260  
+32     3303.75  
+33       11270  
+34     31625.8  
+35       11268  
+36       12850  
+37       10535  
+39        8698  
+40        3829  
+41        2319  
+42        7350  
+43         300  
+45        2956  
+46        1658  
+47        7984  
+48        8513  
+49     4767.75  
+50      9739.5  
+51        1940  
+52      6996.4  
+53     12611.2  
+54         900  
+55     1159.35  
+56        6000  
+57        2831  
+58        4155  
+59      3580.5  
+60        2530  
+61      2116.4  
+#After Completing Data Processing
+df
+ Date                     Bill_Amount     Vehicle_No  Vehicle_Name  \
+2   2015-04-02 00:00:00         550     ap28bg0022       indica   
+3   2015-04-02 00:00:00      9976.9    ap29 r 9922      wagon r   
+5   2015-04-03 00:00:00     3702.25   ap 29 c 2447       santro   
+9   2015-04-04 00:00:00        8850   hr 25 b 4468  ford fiesta   
+10  2015-04-04 00:00:00        1500  ap 29 ba 2340       innova   
+
+     Customer_Name  
+2           nithin  
+3           swarna  
+5   govind agarwal  
+9        s k singh  
+10           suman  
+
+  
