@@ -1178,5 +1178,2307 @@ df11['Customer_Name'] = NewCustData
 # In[205]:
 
 df11.head()
+##2016 Data Preprocessing
+# coding: utf-8
+
+# In[39]:
+
+import pandas as pd
+import re
+import unicodedata
+
+
+# In[43]:
+
+df= pd.read_excel('April 2016.xlsx')
+
+
+# In[44]:
+
+df
+
+
+# In[45]:
+
+df = df.drop(df.columns[[0, 2, 3, 7, 9, 10, 11, 12, 13]], axis=1)
+
+
+# In[46]:
+
+df
+
+
+# In[47]:
+
+df.info()
+
+
+# In[48]:
+
+df.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[49]:
+
+df
+
+
+# In[50]:
+
+((df.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[51]:
+
+df = df.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[52]:
+
+((df.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[53]:
+
+CustName = df.Customer_Name.tolist()
+VehicNo = df.Vehicle_No.tolist()
+VehicName = df.Vehicle_Name.tolist()
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[54]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[55]:
+
+df = df.drop(df.columns[[1,2,3]], axis = 1)
+
+
+# In[56]:
+
+df['Vehicle_No'] = NewVehicNoData
+df['Vehicle_Name'] = NewVehicNameData
+df['Customer_Name'] = NewCustData
+
+
+# In[57]:
+
+df.head()
+
+
+# In[58]:
+
+#MAY DATA PROCESSING STARTS FROM THE BELOW
+
+# In[59]:
+
+df1 = pd.read_excel('May  2016.xlsx')
+
+
+# In[60]:
+
+df1
+
+
+# In[61]:
+
+df1 = df1.drop(df1.columns[[0, 2, 3, 7, 9, 10, 11, 12, 13]], axis=1)
+
+
+# In[62]:
+
+df1.info()
+# In[63]:
+
+df1.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[64]:
+
+((df1.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[65]:
+
+df1 = df1.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[66]:
+
+df1
+
+
+# In[67]:
+
+((df1.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[68]:
+
+CustName = df1.Customer_Name.tolist()
+VehicNo = df1.Vehicle_No.tolist()
+VehicName = df1.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[69]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[70]:
+
+df1 = df1.drop(df1.columns[[1,2,3]], axis = 1)
+
+
+# In[71]:
+
+df1['Vehicle_No'] = NewVehicNoData
+df1['Vehicle_Name'] = NewVehicNameData
+df1['Customer_Name'] = NewCustData
+
+
+# In[72]:
+
+df1.head()
+
+# In[73]:
+
+#JUNE DATA WILL START FROM BELOW
+
+
+# In[74]:
+
+df2 = pd.read_excel('June 2016.xlsx')
+
+
+# In[75]:
+
+df2
+
+
+# In[76]:
+
+df2 = df2.drop(df2.columns[[0, 2, 3, 7, 9, 10, 11, 12, 13]], axis=1) 
+
+# In[77]:
+
+df2
+
+
+# In[]:
+
+df2.info()
+
+
+# In[78]:
+
+df2.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[79]:
+
+((df2.isnull()).sum()/df2.shape[0])*100.00
+
+
+# In[80]:
+
+df2 = df2.dropna(subset=['Vehicle_No','Date'],how='any')
+
+
+# In[81]:
+
+((df2.isnull()).sum()/df2.shape[0])*100.00
+
+
+# In[82]:
+
+CustName = df2.Customer_Name.tolist()
+VehicNo = df2.Vehicle_No.tolist()
+VehicName = df2.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[83]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[84]:
+
+df2 = df2.drop(df2.columns[[1,2,3]], axis = 1)
+df2['Vehicle_No'] = NewVehicNoData
+df2['Vehicle_Name'] = NewVehicNameData
+df2['Customer_Name'] = NewCustData
+
+
+# In[85]:
+
+df2.head()
+
+
+# In[86]:
+
+#JULY DATA PREPARCESSING STARTS FROM BELOW
+
+
+# In[87]:
+
+df3 = pd.read_excel('July 2016.xlsx')
+
+
+# In[89]:
+
+df3
+
+
+# In[90]:
+
+df3.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[92]:
+
+df3 = df3.dropna(subset=['Vehicle_No','Date'],how='any')
+
+
+# In[93]:
+
+((df3.isnull()).sum()/df3.shape[0])*100.00
+
+
+# In[97]:
+
+df3.head()
+
+
+# In[98]:
+
+#AUGUST DATA PREPROCESSING START FROM BELOW
+
+
+# In[99]:
+
+df4 = pd.read_excel('AUGUST 2016.xlsx')
+
+
+# In[100]:
+
+df4
+
+
+# In[101]:
+
+df4 = df4.drop(df4.columns[[0, 2, 3, 7, 9, 10, 11, 12, 13, 14, 15]], axis=1)
+
+
+# In[102]:
+
+df4.info()
+
+# In[103]:
+
+df4.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[104]:
+
+((df4.isnull()).sum()/df4.shape[0])*100.00
+
+
+# In[105]:
+
+df4 = df4.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[106]:
+
+((df4.isnull()).sum()/df4.shape[0])*100.00
+
+
+# In[107]:
+
+df4
+
+
+# In[108]:
+
+CustName = df4.Customer_Name.tolist()
+VehicNo = df4.Vehicle_No.tolist()
+VehicName = df4.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[109]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[110]:
+
+df4 = df4.drop(df4.columns[[1,2,3]], axis = 1)
+
+
+# In[111]:
+
+df4['Vehicle_No'] = NewVehicNoData
+df4['Vehicle_Name'] = NewVehicNameData
+df4['Customer_Name'] = NewCustData
+
+
+# In[112]:
+
+df4.head()
+
+
+ # In[113]:
+
+#SEPTUMBER DATA PERPROCESSING STARTS FROM BELOW
+
+
+# In[114]:
+
+df5 = pd.read_excel('September 2016.xlsx')
+
+
+# In[115]:
+
+df5
+
+# In[116]:
+
+df5 = df5.drop(df5.columns[[0, 2, 3, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]], axis=1)
+
+
+# In[117]:
+
+df5
+
+
+# In[118]:
+
+df5.info()
+
+
+# In[119]:
+
+df5.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[120]:
+
+df5
+
+
+# In[121]:
+
+df5 = df5.dropna(subset=['Vehicle_No','Date'],how='any')
+
+
+# In[122]:
+
+((df5.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[123]:
+
+CustName = df5.Customer_Name.tolist()
+VehicNo = df5.Vehicle_No.tolist()
+VehicName = df5.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[124]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[125]:
+
+df5 = df5.drop(df5.columns[[1,2,3]], axis = 1)
+
+
+# In[126]:
+
+df5['Vehicle_No'] = NewVehicNoData
+df5['Vehicle_Name'] = NewVehicNameData
+df5['Customer_Name'] = NewCustData
+
+
+# In[127]:
+
+df5.head()
+
+
+# In[128]:
+
+#OCTOBER DATA PREPROCESSING STARTS FROM BELOW
+
+
+# In[129]:
+
+df6 = pd.read_excel('October 2016.xlsx')
+
+
+# In[130]:
+
+df6
+
+
+# In[131]:
+
+df6 = df6.drop(df6.columns[[1, 2, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16]], axis=1)
+
+
+# In[132]:
+
+df6.info()
+
+# In[133]:
+
+df6.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[134]:
+
+((df6.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[135]:
+
+df6 = df6.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[136]:
+
+((df6.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[137]:
+
+CustName = df6.Customer_Name.tolist()
+VehicNo = df6.Vehicle_No.tolist()
+VehicName = df6.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[138]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[139]:
+
+df6 = df6.drop(df6.columns[[1,2,3]], axis = 1)
+
+
+# In[140]:
+
+df6['Vehicle_No'] = NewVehicNoData
+df6['Vehicle_Name'] = NewVehicNameData
+df6['Customer_Name'] = NewCustData
+
+
+# In[141]:
+
+df6.head()
+
+# In[142]:
+
+#NOVEMBER DATA PREPROCESSING START FROM BELOW
+
+
+# In[143]:
+
+df7 = pd.read_excel('November 2016.xlsx')
+
+
+# In[144]:
+
+df7
+
+
+# In[145]:
+
+df7 = df7.drop(df7.columns[[1, 2, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16]], axis=1)
+
+
+# In[146]:
+
+df7.info()
+
+
+# In[147]:
+
+df7.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[148]:
+
+((df7.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[149]:
+
+df7 = df7.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[150]:
+
+((df7.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[151]:
+
+CustName = df7.Customer_Name.tolist()
+VehicNo = df7.Vehicle_No.tolist()
+VehicName = df7.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[152]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[153]:
+
+df7 = df7.drop(df7.columns[[1,2,3]], axis = 1)
+
+
+# In[154]:
+
+df7['Vehicle_No'] = NewVehicNoData
+df7['Vehicle_Name'] = NewVehicNameData
+df7['Customer_Name'] = NewCustData
+
+
+# In[155]:
+
+df7.head()
+
+
+# In[156]:
+
+#DECEMBER DATA PROCESSING START FROM BELOW
+
+
+# In[157]:
+
+df8 = pd.read_excel('December 2016.xlsx')
+
+
+# In[158]:
+
+df8
+
+
+# In[159]:
+
+df8 = df8.drop(df8.columns[[1, 2, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]], axis=1)
+
+
+# In[160]:
+
+df8.info()
+
+
+# In[161]:
+
+df8.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[162]:
+
+((df8.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[163]:
+
+df8 = df8.dropna(subset=['Vehicle_No','Vehicle_Name'],how='any')
+
+
+# In[164]:
+
+((df8.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[165]:
+
+CustName = df8.Customer_Name.tolist()
+VehicNo = df8.Vehicle_No.tolist()
+VehicName = df8.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[166]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[167]:
+
+df8 = df8.drop(df8.columns[[1,2,3]], axis = 1)
+
+
+# In[168]:
+
+df8['Vehicle_No'] = NewVehicNoData
+df8['Vehicle_Name'] = NewVehicNameData
+df8['Customer_Name'] = NewCustData
+
+
+# In[169]:
+
+df8.head()
+
+
+# In[170]:
+
+#JANUARY DATA PREPROCESSING START FROM BELOW
+
+
+# In[171]:
+
+df9 = pd.read_excel('January 2017.xlsx')
+
+
+# In[172]:
+
+df9
+
+
+# In[173]:
+
+df9 = df9.drop(df9.columns[[1, 2, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]], axis=1)
+
+
+# In[174]:
+
+df9.info()
+
+
+# In[175]:
+
+df9.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[176]:
+
+((df9.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[177]:
+
+df9 = df9.dropna(subset=['Vehicle_No','Vehicle_Name'],how='any')
+
+
+# In[178]:
+
+((df9.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[179]:
+
+CustName = df9.Customer_Name.tolist()
+VehicNo = df9.Vehicle_No.tolist()
+VehicName = df9.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[180]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[181]:
+
+df9 = df9.drop(df9.columns[[1,2,3]], axis = 1)
+
+
+# In[182]:
+
+df9['Vehicle_No'] = NewVehicNoData
+df9['Vehicle_Name'] = NewVehicNameData
+df9['Customer_Name'] = NewCustData
+
+
+# In[183]:
+
+df9.head()
+
+##2017 Data Preprocessing
+# coding: utf-8
+
+
+# In[3]:
+
+import pandas as pd
+import re
+import unicodedata
+
+
+# In[6]:
+
+df = pd.read_excel('April 2017.xlsx')
+
+
+# In[7]:
+
+df
+
+
+# In[9]:
+
+
+df.columns = ['Date', 'Bill_Amount', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name']
+
+# In[13]:
+
+
+df = df.dropna(subset=['Vehicle_No','Date'],how='any')
+
+
+# In[15]:
+
+
+((df.isnull()).sum()/df.shape[0])*100.00
+
+
+
+# In[22]:
+
+df.head()
+
+
+# In[23]:
+
+#MAY DATA PROCESSING STARTS FROM THE BELOW
+
+# In[24]:
+
+df1 = pd.read_excel('May 2017.xlsx')
+
+
+# In[22]:
+
+df1
+
+
+# In[26]
+df1.columns =  ['Date', 'Bill_Amount', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name']
+
+# In[27]:
+
+df1 = df1.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[28]:
+
+((df1.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[33]:
+
+df1.head()
+
+
+# In[34]:
+
+#JUNE DATA WILL START FROM BELOW
+
+
+# In[35]:
+
+df2 = pd.read_excel('June 2017.xlsx')
+
+
+# In[35]:
+
+df2
+
+# In[36]:
+
+df2.columns = ['Date', 'Bill_Amount', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name']
+
+# In[37]:
+
+df2 = df2.dropna(subset=['Vehicle_No','Date'],how='any')
+
+
+# In[38]:
+
+((df2.isnull()).sum()/df2.shape[0])*100.00
+
+
+# In[42]:
+
+df2.head()
+
+
+# In[43]:
+
+#JULY DATA PREPARCESSING STARTS FROM BELOW
+
+
+# In[44]:
+
+df3 = pd.read_excel('July 2017.xlsx')
+
+
+# In[45]:
+
+df3
+
+# In[46]:
+
+df3.columns =  ['Date', 'Bill_Amount', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name']
+
+
+# In[48]:
+
+df3 = df3.dropna(subset=['Vehicle_No','Date'],how='any')
+
+
+# In[49]:
+
+((df3.isnull()).sum()/df3.shape[0])*100.00
+
+
+# In[53]:
+
+df3.head()
+
+# In[98]:
+
+#AUGUST DATA PREPROCESSING START FROM BELOW
+
+
+# In[99]:
+
+df4 = pd.read_excel('AUGUST 2017.xlsx')
+
+
+# In[100]:
+
+df4
+
+# In[102]:
+
+df4.info()
+
+# In[103]:
+
+df4.columns = ['Date', 'Bill_Amount', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name']
+
+
+# In[105]:
+
+df4 = df4.dropna(subset=['Vehicle_No','Date'],how='any')
+
+
+# In[106]:
+
+((df4.isnull()).sum()/df4.shape[0])*100.00
+
+
+# In[107]:
+
+df4.head()
+
+
+ # In[113]:
+
+#SEPTUMBER DATA PERPROCESSING STARTS FROM BELOW
+
+
+# In[114]:
+
+df5 = pd.read_excel('September 2017.xlsx')
+
+
+# In[115]:
+
+df5
+
+# In[118]:
+
+df5.info()
+
+
+# In[119]:
+
+df5.columns = ['Date', 'Bill_Amount', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name']
+
+
+
+# In[121]:
+
+df5 = df5.dropna(subset=['Vehicle_No','Date'],how='any')
+
+
+# In[122]:
+
+((df5.isnull()).sum()/df.shape[0])*100.00
+
+# In[123]
+
+df5.head()
+
+# In[128]:
+
+#OCTOBER DATA PREPROCESSING STARTS FROM BELOW
+
+
+# In[129]:
+
+df6 = pd.read_excel('October 2017.xlsx')
+
+
+# In[130]:
+
+df6
+
+# In[131]:
+df6.columns =  ['Date', 'Bill_Amount', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name']
+
+# In[135]:
+
+df6 = df6.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[136]:
+
+((df6.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[137]:
+df6.head()
+
+# In[142]:
+
+#NOVEMBER DATA PREPROCESSING START FROM BELOW
+
+
+# In[143]:
+
+df7 = pd.read_excel('November 2017.xlsx')
+
+
+# In[144]:
+
+df7
+
+# In[145]:
+
+df7.columns =  ['Date', 'Bill_Amount', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name']
+
+
+# In[149]:
+
+df7 = df7.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[150]:
+
+((df7.isnull()).sum()/df.shape[0])*100.00
+
+# In[151]:
+df7.head()
+
+# In[156]:
+
+#DECEMBER DATA PROCESSING START FROM BELOW
+
+
+# In[157]:
+
+df8 = pd.read_excel('December 2017.xlsx')
+
+
+# In[158]:
+
+df8
+
+# In[159]:
+df7.columns =  ['Date', 'Bill_Amount', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name']
+
+
+# In[164]:
+
+((df8.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[165]:
+df8.head()
+
+##2018 Data Preprocessing
+# coding: utf-8
+
+# In[61]:
+
+import pandas as pd
+import re
+import unicodedata
+
+
+# In[62]:
+
+df= pd.read_excel('April 2018.xlsx')
+
+
+# In[63]:
+
+df
+
+
+# In[64]:
+
+df = df.drop(df.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]], axis=1)
+
+
+# In[46]:
+
+df
+
+
+# In[65]:
+
+df.info()
+
+
+# In[66]:
+
+df.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[67]:
+
+df
+
+
+# In[68]:
+
+((df.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[69]:
+
+df = df.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[70]:
+
+((df.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[71]:
+
+CustName = df.Customer_Name.tolist()
+VehicNo = df.Vehicle_No.tolist()
+VehicName = df.Vehicle_Name.tolist()
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[72]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[73]:
+
+df = df.drop(df.columns[[1,2,3]], axis = 1)
+
+
+# In[74]:
+
+df['Vehicle_No'] = NewVehicNoData
+df['Vehicle_Name'] = NewVehicNameData
+df['Customer_Name'] = NewCustData
+
+
+# In[75]:
+
+df.head()
+
+
+# In[ ]:
+
+# In[58]:
+
+#MAY DATA PROCESSING STARTS FROM THE BELOW
+
+# In[59]:
+
+df1 = pd.read_excel('May 2018.xlsx')
+
+
+# In[60]:
+
+df1
+
+
+# In[61]:
+
+df1 = df1.drop(df1.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]], axis=1)
+
+
+# In[62]:
+
+df1.info()
+# In[63]:
+
+df1.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[64]:
+
+((df1.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[65]:
+
+df1 = df1.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[66]:
+
+df1
+
+
+# In[67]:
+
+((df1.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[68]:
+
+CustName = df1.Customer_Name.tolist()
+VehicNo = df1.Vehicle_No.tolist()
+VehicName = df1.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[69]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[70]:
+
+df1 = df1.drop(df1.columns[[1,2,3]], axis = 1)
+
+
+# In[71]:
+
+df1['Vehicle_No'] = NewVehicNoData
+df1['Vehicle_Name'] = NewVehicNameData
+df1['Customer_Name'] = NewCustData
+
+
+# In[72]:
+
+df1.head()
+
+
+
+# In[ ]:
+
+# In[73]:
+
+#JUNE DATA WILL START FROM BELOW
+
+
+# In[74]:
+
+df2 = pd.read_excel('June 2018.xlsx')
+
+
+# In[75]:
+
+df2
+
+
+# In[76]:
+
+df2 = df2.drop(df2.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]], axis=1) 
+
+# In[77]:
+
+df2.info()
+
+
+# In[]:
+
+df2.info()
+
+
+# In[78]:
+
+df2.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[79]:
+
+((df2.isnull()).sum()/df2.shape[0])*100.00
+
+
+# In[80]:
+
+df2 = df2.dropna(subset=['Vehicle_No','Date'],how='any')
+
+
+# In[81]:
+
+((df2.isnull()).sum()/df2.shape[0])*100.00
+
+
+# In[82]:
+
+CustName = df2.Customer_Name.tolist()
+VehicNo = df2.Vehicle_No.tolist()
+VehicName = df2.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[83]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[84]:
+
+df2 = df2.drop(df2.columns[[1,2,3]], axis = 1)
+df2['Vehicle_No'] = NewVehicNoData
+df2['Vehicle_Name'] = NewVehicNameData
+df2['Customer_Name'] = NewCustData
+
+
+# In[85]:
+
+df2.head()
+
+
+# In[57]:
+
+#JULY DATA PREPARCESSING STARTS FROM BELOW
+
+
+# In[58]:
+
+df3 = pd.read_excel('July 2018.xlsx')
+
+
+# In[59]:
+
+df3
+
+
+# In[60]:
+
+df3 = df3.drop(df3.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]], axis=1) 
+
+
+# In[61]:
+
+df3
+
+
+# In[62]:
+
+df3.info()
+
+
+# In[63]:
+
+df3.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[64]:
+
+((df3.isnull()).sum()/df3.shape[0])*100.00
+
+
+# In[65]:
+
+df3 = df3.dropna(subset=['Vehicle_No','Date'],how='any')
+
+
+# In[66]:
+
+((df3.isnull()).sum()/df3.shape[0])*100.00
+
+
+# In[67]:
+
+CustName = df3.Customer_Name.tolist()
+VehicNo = df3.Vehicle_No.tolist()
+VehicName = df3.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[68]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[69]:
+
+df3 = df3.drop(df3.columns[[1,2,3]], axis = 1)
+df3['Vehicle_No'] = NewVehicNoData
+df3['Vehicle_Name'] = NewVehicNameData
+df3['Customer_Name'] = NewCustData
+
+
+# In[70]:
+
+df3.head()
+
+
+# In[71]:
+
+df3.info()
+
+
+# In[98]:
+
+#AUGUST DATA PREPROCESSING START FROM BELOW
+
+
+# In[99]:
+
+df4 = pd.read_excel('AUGUST 2018.xlsx')
+
+
+# In[100]:
+
+df4
+
+
+# In[101]:
+
+df4 = df4.drop(df4.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15]], axis=1)
+
+
+# In[102]:
+
+df4.info()
+
+# In[103]:
+
+df4.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[104]:
+
+((df4.isnull()).sum()/df4.shape[0])*100.00
+
+
+# In[105]:
+
+df4 = df4.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[106]:
+
+((df4.isnull()).sum()/df4.shape[0])*100.00
+
+
+# In[107]:
+
+df4
+
+
+# In[108]:
+
+CustName = df4.Customer_Name.tolist()
+VehicNo = df4.Vehicle_No.tolist()
+VehicName = df4.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[109]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[110]:
+
+df4 = df4.drop(df4.columns[[1,2,3]], axis = 1)
+
+
+# In[111]:
+
+df4['Vehicle_No'] = NewVehicNoData
+df4['Vehicle_Name'] = NewVehicNameData
+df4['Customer_Name'] = NewCustData
+
+
+# In[112]:
+
+df4.head()
+
+
+ # In[113]:
+
+#SEPTUMBER DATA PERPROCESSING STARTS FROM BELOW
+
+
+# In[114]:
+
+df5 = pd.read_excel('September 2018.xlsx')
+
+
+# In[115]:
+
+df5
+
+# In[116]:
+df5.info()
+# In[116]:
+
+df5 = df5.drop(df5.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15]], axis=1)
+
+
+# In[117]:
+
+df5
+
+
+# In[118]:
+
+df5.info()
+
+
+# In[119]:
+
+df5.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[120]:
+
+df5
+
+
+# In[121]:
+
+df5 = df5.dropna(subset=['Vehicle_No','Date'],how='any')
+
+
+# In[122]:
+
+((df5.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[123]:
+
+CustName = df5.Customer_Name.tolist()
+VehicNo = df5.Vehicle_No.tolist()
+VehicName = df5.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[124]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[125]:
+
+df5 = df5.drop(df5.columns[[1,2,3]], axis = 1)
+
+
+# In[126]:
+
+df5['Vehicle_No'] = NewVehicNoData
+df5['Vehicle_Name'] = NewVehicNameData
+df5['Customer_Name'] = NewCustData
+
+
+# In[127]:
+
+df5.head()
+
+
+
+# In[128]:
+
+#OCTOBER DATA PREPROCESSING STARTS FROM BELOW
+
+
+# In[129]:
+
+df6 = pd.read_excel('October 2018.xlsx')
+
+
+# In[130]:
+
+df6
+
+
+
+# In[131]:
+
+df6 = df6.drop(df6.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15]], axis=1)
+
+
+# In[132]:
+
+df6.info()
+
+# In[133]:
+
+df6.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[134]:
+
+((df6.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[135]:
+
+df6 = df6.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[136]:
+
+((df6.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[137]:
+
+CustName = df6.Customer_Name.tolist()
+VehicNo = df6.Vehicle_No.tolist()
+VehicName = df6.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[138]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[139]:
+
+df6 = df6.drop(df6.columns[[1,2,3]], axis = 1)
+
+
+# In[140]:
+
+df6['Vehicle_No'] = NewVehicNoData
+df6['Vehicle_Name'] = NewVehicNameData
+df6['Customer_Name'] = NewCustData
+
+
+# In[141]:
+
+df6.head()
+
+
+# In[142]:
+
+#NOVEMBER DATA PREPROCESSING START FROM BELOW
+
+
+# In[143]:
+
+df7 = pd.read_excel('November 2018.xlsx')
+
+
+# In[144]:
+
+df7
+
+
+# In[145]:
+
+df7 = df7.drop(df7.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15]], axis=1)
+
+
+# In[146]:
+
+df7.info()
+
+
+# In[147]:
+
+df7.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[148]:
+
+((df7.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[149]:
+
+df7 = df7.dropna(subset=['Vehicle_No','Customer_Name'],how='any')
+
+
+# In[150]:
+
+((df7.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[151]:
+
+CustName = df7.Customer_Name.tolist()
+VehicNo = df7.Vehicle_No.tolist()
+VehicName = df7.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[152]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[153]:
+
+df7 = df7.drop(df7.columns[[1,2,3]], axis = 1)
+
+
+# In[154]:
+
+df7['Vehicle_No'] = NewVehicNoData
+df7['Vehicle_Name'] = NewVehicNameData
+df7['Customer_Name'] = NewCustData
+
+
+# In[155]:
+
+df7.head()
+
+
+# In[156]:
+
+#DECEMBER DATA PROCESSING START FROM BELOW
+
+
+# In[157]:
+
+df8 = pd.read_excel('December 2018.xlsx')
+
+
+# In[158]:
+
+df8
+
+
+# In[159]:
+
+df8 = df8.drop(df8.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15]], axis=1)
+
+
+# In[160]:
+
+df8.info()
+
+
+# In[161]:
+
+df8.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[162]:
+
+((df8.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[163]:
+
+df8 = df8.dropna(subset=['Vehicle_No','Vehicle_Name'],how='any')
+
+
+# In[164]:
+
+((df8.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[165]:
+
+CustName = df8.Customer_Name.tolist()
+VehicNo = df8.Vehicle_No.tolist()
+VehicName = df8.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[166]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[167]:
+
+df8 = df8.drop(df8.columns[[1,2,3]], axis = 1)
+
+
+# In[168]:
+
+df8['Vehicle_No'] = NewVehicNoData
+df8['Vehicle_Name'] = NewVehicNameData
+df8['Customer_Name'] = NewCustData
+
+
+# In[169]:
+
+df8.head()
+
+
+# In[170]:
+
+#JANUARY DATA PREPROCESSING START FROM BELOW
+
+
+# In[171]:
+
+df9 = pd.read_excel('January 2019.xlsx')
+
+
+# In[172]:
+
+df9
+
+
+# In[173]:
+
+df9 = df9.drop(df9.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15]], axis=1)
+
+
+# In[174]:
+
+df9.info()
+
+
+# In[175]:
+
+df9.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[176]:
+
+((df9.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[177]:
+
+df9 = df9.dropna(subset=['Vehicle_No','Vehicle_Name'],how='any')
+
+
+# In[178]:
+
+((df9.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[179]:
+
+CustName = df9.Customer_Name.tolist()
+VehicNo = df9.Vehicle_No.tolist()
+VehicName = df9.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[180]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[181]:
+
+df9 = df9.drop(df9.columns[[1,2,3]], axis = 1)
+
+
+# In[182]:
+
+df9['Vehicle_No'] = NewVehicNoData
+df9['Vehicle_Name'] = NewVehicNameData
+df9['Customer_Name'] = NewCustData
+
+
+# In[183]:
+
+df9.head()
+
+# In[ ]:
+
+#FEBRUARY DATA PROCESSING START FROM BELOW
+
+
+# In[186]:
+
+df10 = pd.read_excel('February 2019.xlsx')
+
+
+# In[187]:
+
+df10
+
+
+# In[190]:
+
+df10 = df10.drop(df10.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]], axis=1)
+
+
+# In[193]:
+
+df10.info()
+
+
+# In[197]:
+
+df10.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[198]:
+
+((df10.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[199]:
+
+df10 = df10.dropna(subset=['Vehicle_No','Vehicle_Name'],how='any')
+
+
+# In[200]:
+
+((df10.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[201]:
+
+CustName = df10.Customer_Name.tolist()
+VehicNo = df10.Vehicle_No.tolist()
+VehicName = df10.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[202]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[203]:
+
+df10 = df10.drop(df10.columns[[1,2,3]], axis = 1)
+
+
+# In[204]:
+
+df10['Vehicle_No'] = NewVehicNoData
+df10['Vehicle_Name'] = NewVehicNameData
+df10['Customer_Name'] = NewCustData
+
+
+# In[205]:
+
+df10.head()
+
+# In[ ]:
+
+#MARCH DATA PROCESSING START FROM BELOW
+
+
+# In[186]:
+
+df11 = pd.read_excel('March 2019.xlsx')
+
+
+# In[187]:
+
+df11
+
+
+# In[190]:
+
+df11 = df11.drop(df11.columns[[1, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16]], axis=1)
+
+
+# In[193]:
+
+df11.info()
+
+
+# In[197]:
+
+df11.columns = ['Date', 'Vehicle_No', 'Vehicle_Name', 'Customer_Name', 'Bill_Amount']
+
+
+# In[198]:
+
+((df11.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[199]:
+
+df11 = df11.dropna(subset=['Vehicle_No','Vehicle_Name'],how='any')
+
+
+# In[200]:
+
+((df11.isnull()).sum()/df.shape[0])*100.00
+
+
+# In[201]:
+
+CustName = df11.Customer_Name.tolist()
+VehicNo = df11.Vehicle_No.tolist()
+VehicName = df11.Vehicle_Name.tolist()
+
+#Create a new list which includes the previous extracted lists
+Listoflist = [CustName, VehicNo, VehicName]
+
+
+# In[202]:
+
+NewCustData = []
+NewVehicNoData = []
+NewVehicNameData = []
+NewListoflist = [NewCustData, NewVehicNoData, NewVehicNameData]
+
+for l in range(len(Listoflist)):
+    for i in Listoflist[l]:
+        i = str(i)
+        data = unicodedata.normalize('NFD'
+                                     , i).encode('ascii',
+                                                 'ignore')
+        data = re.sub('[^a-zA-Z0-9]',' ',
+                      data.decode("utf-8"), re.UNICODE)
+        data = data.lower()
+        NewListoflist[l].append(data)
+
+
+# In[203]:
+
+df11 = df11.drop(df11.columns[[1,2,3]], axis = 1)
+
+
+# In[204]:
+
+df11['Vehicle_No'] = NewVehicNoData
+df11['Vehicle_Name'] = NewVehicNameData
+df11['Customer_Name'] = NewCustData
+
+
+# In[205]:
+
+df11.head()
+
 
 
